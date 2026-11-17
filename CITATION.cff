@@ -4,6 +4,7 @@ title: "HAZBRA: processing code of a climate hazard dataset for Brazil"
 type: software
 version: 0.1.0
 license: MIT
+repository-code: "https://github.com/Luisgcattelan/HAZBRA"
 abstract: >-
   Code that computes the HAZBRA climate-hazard indicators for Brazil (16 rainfall, drought, heat and
   compound indicators) from CHIRPS, MERGE and BR-DWGD observations and the 19-model CLIMBRA CMIP6
