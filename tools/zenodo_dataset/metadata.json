@@ -1,0 +1,61 @@
+{
+  "upload_type": "dataset",
+  "title": "HAZBRA: a climate hazard dataset for Brazil with observed and projected indicators at grid and municipal scale",
+  "version": "1.0",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "description": "<p><b>HAZBRA</b> is a climate hazard dataset for Brazil: 16 indicators of extreme rainfall, drought, heat and compound hazards, observed and projected, on regular grids (NetCDF4) and for all 5,570 municipalities (Parquet, IBGE 2024 codes). The full user guide is <code>README.md</code> in this record.</p>\n<h3>Contents</h3>\n<ul>\n<li><b>Observed</b> (CHIRPS 0.05°, MERGE 0.1°, BR-DWGD/XAVIER 0.1°): climatologies (1981&ndash;2010; MERGE 2001&ndash;2020), annual time series, Hamed &amp; Rao modified Mann&ndash;Kendall trends with Sen's slope (1981&ndash;2023; MERGE 2001&ndash;2023), GEV return levels for 5&ndash;100 years and GEV parameters.</li>\n<li><b>Projected</b> (19 bias-corrected CMIP6 models of CLIMBRA, 0.25°): climatologies and return levels at the reference period (1981&ndash;2010) and at global warming levels of +1.5, +2 and +3 &deg;C (30-year SSP5-8.5 windows); per-model and ensemble (mean, median, P10, P90) values; changes in absolute and % terms with model agreement (&ge;66 % of models); return-period shifts and probability ratios of historical 5&ndash;100-year events; delta-change projections on each observational baseline; annual time series 1980&ndash;2100 under SSP2-4.5 and SSP5-8.5.</li>\n<li><b>Municipal</b>: area-weighted aggregation of all observational and ensemble products (mean, std, min, max, method), with robustness and trend-significance shares.</li>\n<li><b>Quality control</b>: flags and original values of every return-level cell modified by the outlier filter.</li>\n</ul>\n<h3>Indicators</h3>\n<p><b>Rainfall</b>: Rx1day, Rx5day, CWD, PRCPTOT, seasonal precipitation. <b>Drought</b>: CDD, seasonal CDD, SPI-3 (seasonal minimum), SPI-6 (annual minimum). <b>Heat</b>: TXx, TNn, frost spell (TN &lt; 6 &deg;C), WSDI. <b>Compound</b>: Heat Index (mean, maximum, days per NOAA class), Fire Weather Index (mean, maximum, days per danger class), hot&ndash;dry days.</p>\n<h3>Files</h3>\n<ul>\n<li><code>README.md</code> &ndash; user guide (indicators, periods, file naming, variables, dimensions, examples, limitations)</li>\n<li><code>README_municipalities.md</code> &ndash; municipal tables in detail</li>\n<li><code>netcdf_CLIMBRA_&lt;Hazard&gt;.zip</code>, <code>netcdf_Observational_&lt;Hazard&gt;.zip</code> &ndash; gridded products (Hazard = Rainfall, Drought, Heat, Compound)</li>\n<li><code>municipalities_CLIMBRA_&lt;Hazard&gt;.zip</code>, <code>municipalities_Observations_&lt;Hazard&gt;.zip</code> &ndash; municipal tables</li>\n<li><code>municipalities_geometry.zip</code>, <code>municipalities_weights.zip</code>, <code>netcdf_outliers.zip</code>, <code>MD5SUMS.txt</code></li>\n</ul>\n<p>Unpack all zips in one folder to rebuild the tree <code>netcdf/</code> and <code>municipalities/</code>.</p>\n<h3>Quick start</h3>\n<pre>import xarray as xr\nds = xr.open_dataset(\"netcdf/CLIMBRA/Rainfall/Rx5day/ensemble/ensemble_anomaly_return_period.nc\")\nchange = ds[\"Rx5day_anom_perc\"].sel(ensemble=\"median\", GWL=\"2\", return_period=25)   # % change of the 25-yr event at +2 &deg;C</pre>\n<h3>Notes</h3>\n<p>The source datasets (CHIRPS, MERGE, BR-DWGD, CLIMBRA) are not redistributed; please also cite them. Processing code: <a href=\"https://github.com/Luisgcattelan/HAZBRA\">github.com/Luisgcattelan/HAZBRA</a> (doi:10.5281/zenodo.24319623).</p>",
+  "keywords": [
+    "climate hazards",
+    "climate extremes",
+    "Brazil",
+    "CMIP6",
+    "CLIMBRA",
+    "global warming levels",
+    "return periods",
+    "GEV",
+    "municipalities",
+    "physical climate risk"
+  ],
+  "creators": [
+    {
+      "name": "Cattelan, Luís Gustavo",
+      "affiliation": "University of Leeds; Instituto Relva"
+    },
+    {
+      "name": "Amorim, Pablo Borges de",
+      "affiliation": "Federal University of Rio Grande do Norte (UFRN)"
+    },
+    {
+      "name": "Rodrigues, Daniele T.",
+      "affiliation": "Federal University of Rio Grande do Norte (UFRN)"
+    },
+    {
+      "name": "Buller, Antonio",
+      "affiliation": "Theia Finance Labs"
+    },
+    {
+      "name": "Vinagreiro, Carlos Eduardo",
+      "affiliation": "Central Bank of Brazil"
+    },
+    {
+      "name": "Moraes, Ricardo José Nunes Pereira",
+      "affiliation": "Central Bank of Brazil"
+    },
+    {
+      "name": "Dalla Riva, Enrico",
+      "affiliation": "Central Bank of Brazil; Mackenzie Presbyterian University"
+    },
+    {
+      "name": "Mattos, Caio",
+      "affiliation": "Instituto Relva"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.24319623",
+      "relation": "isCompiledBy",
+      "resource_type": "software"
+    }
+  ]
+}
