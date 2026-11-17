@@ -1,0 +1,33 @@
+# Software environment used for the HAZBRA processing (conda env "geoenv13" on JASMIN).
+# Versions are those found in that environment when this package was prepared; they have NOT been
+# re-solved from scratch.  Create with:   conda env create -f environment.yml
+name: hazbra
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - numpy=2.3
+  - pandas=3.0
+  - xarray=2025.12
+  - dask=2025.12
+  - netcdf4=1.7
+  - cftime=1.6
+  - bottleneck
+  - numba
+  - scipy=1.16
+  - xclim=0.60           # indicators, GEV fits, SPI, FWI, heat index
+  - pymannkendall=1.4    # Mann-Kendall / Sen's slope
+  - rioxarray=0.18       # spatial interpolation used by the outlier filter and delta change
+  - rasterio
+  - pyyaml
+  - joblib
+  # geometry, municipal aggregation and figures
+  - geopandas=1.1
+  - shapely=2.1
+  - pyogrio
+  - pyproj
+  - regionmask=0.13
+  - pyarrow=21
+  - matplotlib=3.10
+  - cartopy=0.25
+  - requests

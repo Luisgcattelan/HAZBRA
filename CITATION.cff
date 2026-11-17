@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below (and the HAZBRA data paper once published)."
+title: "HAZBRA: processing code of a climate hazard dataset for Brazil"
+type: software
+version: 0.1.0
+license: MIT
+abstract: >-
+  Code that computes the HAZBRA climate-hazard indicators for Brazil (16 rainfall, drought, heat and
+  compound indicators) from CHIRPS, MERGE and BR-DWGD observations and the 19-model CLIMBRA CMIP6
+  ensemble at global warming levels of 1.5, 2 and 3 °C, with GEV return levels, return-period shifts,
+  ensemble statistics, delta-change projections and municipal aggregation.
+keywords: [climate hazards, extremes, Brazil, CMIP6, CLIMBRA, global warming levels, return periods, GEV]
+authors:
+  - family-names: Cattelan
+    given-names: Luís Gustavo
+    affiliation: "School of Geography, University of Leeds; Instituto Relva"
+  - family-names: Amorim
+    given-names: Pablo Borges de
+    affiliation: "Federal University of Rio Grande do Norte (UFRN)"
+  - family-names: Rodrigues
+    given-names: Daniele T.
+    affiliation: "Federal University of Rio Grande do Norte (UFRN)"
+  - family-names: Buller
+    given-names: Antonio
+    affiliation: "Theia Finance Labs"
+  - family-names: Vinagreiro
+    given-names: Carlos Eduardo
+    affiliation: "Central Bank of Brazil"
+  - family-names: Moraes
+    given-names: Ricardo José Nunes Pereira
+    affiliation: "Central Bank of Brazil"
+  - family-names: Dalla Riva
+    given-names: Enrico
+    affiliation: "Central Bank of Brazil; Mackenzie Presbyterian University"
+  - family-names: Mattos
+    given-names: Caio
+    affiliation: "Instituto Relva"

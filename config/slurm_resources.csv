@@ -1,0 +1,41 @@
+# SLURM resources used by run_pipeline.sh / 01_calculation/submit.sh.
+# stage climbra = ONE job per model and indicator; obs = one job per indicator and dataset;
+# post = ensemble + anomalies + return-period shift + delta change of one indicator; final = municipal
+# aggregation, outlier tables, READMEs (+ paper figures).  Memory/CPUs of the climbra/obs rows are those of
+# the original bashs/*.run.sh files; the climbra times are per model (the originals ran 19 models in one job).
+stage,indicator,time,cpus,mem_mb
+climbra,Rx1day,12:00:00,8,51200
+climbra,Rx5day,12:00:00,8,51200
+climbra,TXX,12:00:00,8,51200
+climbra,TNN,12:00:00,8,51200
+climbra,CDD,12:00:00,24,251200
+climbra,CDD_season,12:00:00,24,251200
+climbra,CWD,12:00:00,12,51200
+climbra,prcptot,12:00:00,8,51200
+climbra,pr_season,12:00:00,20,51200
+climbra,SPI3,12:00:00,20,51200
+climbra,SPI6,12:00:00,12,51200
+climbra,Frost,12:00:00,12,51200
+climbra,WSDI,12:00:00,8,51200
+climbra,HI,12:00:00,12,51200
+climbra,FWI,12:00:00,12,251200
+climbra,Dry_Hot,12:00:00,8,51200
+obs,Rx1day,43:59:00,12,51200
+obs,Rx5day,43:59:00,12,150000
+obs,TXX,43:59:00,12,51200
+obs,TNN,43:59:00,12,51200
+obs,CDD,43:59:00,24,101200
+obs,CDD_season,43:59:00,12,101200
+obs,CWD,43:59:00,12,150000
+obs,prcptot,43:59:00,12,51200
+obs,pr_season,43:59:00,12,501200
+obs,SPI3,46:59:00,24,101200
+obs,SPI6,43:59:00,18,101200
+obs,Frost,43:59:00,12,51200
+obs,WSDI,43:59:00,12,251200
+obs,HI,43:59:00,12,251200
+obs,FWI,43:59:00,12,400000
+obs,Dry_Hot,43:59:00,12,251200
+post,*,08:00:00,8,128000
+final,*,24:00:00,8,128000
+test,*,02:00:00,4,32000

@@ -1,0 +1,21 @@
+# run outputs and scratch (never in the repository)
+_test_output/
+logs/
+outputs/tables/
+outputs/figures/*.pdf
+**/outputs/
+!outputs/
+!outputs/figures/
+!outputs/figures/*.png
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+*.nc
+*.parquet
+*.gpkg
+*.tmp
+.DS_Store
+
+# kept local (not part of the public code)
+docs/
+04_gev_diagnostics/

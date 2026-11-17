@@ -1,0 +1,35 @@
+# HAZBRA – TEST configuration.  Merged on top of paths.yaml by `--test`.
+#
+# Goal: run every stage end-to-end in minutes, on a tiny spatial box and a few
+# models, WITHOUT touching the production data product.
+#   * reads:  the same raw / product files as production (read-only)
+#   * writes: only below `test_root`  (never into HAZBRA/netcdf or HAZBRA/municipalities)
+
+test_root: "{code_root}/_test_output"
+
+paths:
+  netcdf_climbra: "{test_root}/netcdf/CLIMBRA"
+  netcdf_obs:     "{test_root}/netcdf/Observational"
+  municipal:      "{test_root}/municipalities"
+  outliers:       "{test_root}/netcdf/outliers"
+  figures:        "{test_root}/figures"
+  tables:         "{test_root}/tables"
+
+calc:
+  overwrite: true          # test outputs are disposable
+  obs_tile_rows: 4         # several latitude bands even on the small test box
+
+test:
+  enabled: true
+  # 1 x 1 degree box in central Brazil (Mato Grosso/Goias border region).
+  box:
+    center_lon: -55.5
+    center_lat: -10.0
+    size_deg: 1.0
+  # Only these CLIMBRA models are processed. Both are among the 10 models that have ALL variables
+  # (tasmax, tasmin, pr, hur, sfcWind, rss), so every indicator – including HI/FWI – can run.
+  models: [ACCESS-ESM1-5, MIROC6]
+  # Observational datasets used when an indicator lists several.
+  datasets: [XAVIER]
+  # Indicators run by `run_all --test` (one per processing pattern).
+  indicators: [Rx1day, Rx5day, CDD, SPI3, HI, WSDI]

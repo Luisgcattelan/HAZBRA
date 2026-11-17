@@ -1,0 +1,50 @@
+# HAZBRA – production configuration (paths + run options).
+#
+# Values written as {name} are substituted with other keys of this file
+# (see hazbra/config.py).  Edit ONLY this file to move the project.
+# `config/test.yaml` is merged on top of this file when a script is run with --test.
+
+data_root: /gws/ssde/j25a/craft/lgcatt/z_GIZ          # holds raw_Data/, HAZBRA/, extra_data/
+shared_root: /gws/ssde/j25a/craft/lgcatt/shared       # shapefiles + datasets shared across projects
+
+paths:
+  # ---- inputs: climate data ------------------------------------------------
+  raw_climbra:   "{data_root}/raw_Data/CLIMBRA"       # <var>/<MODEL>-<var>-{hist,ssp245,ssp585}.nc
+  raw_xavier:    "{data_root}/raw_Data/XAVIER"        # <var>/*.nc  (BR-DWGD, vars: pr Tmax Tmin RH u2 ...)
+  chirps_daily:  /gws/pw/j25/cssp_brazil/lgcatt/data/chirps_SA_1981_2024_daily.nc
+  merge_daily:   "{shared_root}/Datasets/daily_merge.nc"
+  gwl_table:     "{raw_climbra}/GWL_CLIMBRA.csv"      # produced by 01_calculation/00_gwl_table.py
+  gwl_table_raw: "{raw_climbra}/GWL_all.csv"          # input of 00_gwl_table.py
+
+  # ---- inputs: external comparison data (paper only) ----------------------
+  ipcc_atlas:    "{data_root}/extra_data/IPCC_data"   # IPCC AR6 Interactive Atlas downloads
+  ipcc_out:      "{data_root}/extra_data/IPCC_comparison"
+
+  # ---- geometry ------------------------------------------------------------
+  shp_brazil:          "{shared_root}/shapefiles/brazil_dissolved.gpkg"
+  shp_regions:         "{shared_root}/shapefiles/BR_Regioes_2024/BR_Regioes_2024.shp"
+  shp_states:          "{shared_root}/shapefiles/BR_UF_2022/BR_UF_2022.shp"
+  shp_municipalities:  "{shared_root}/shapefiles/BR_Municipios_2024/BR_Municipios_2024.shp"
+  south_america_limit: "{shared_root}/Lim_america_do_sul_IBGE_2021_Brasil.geojson"
+
+  # ---- outputs: the HAZBRA data product ------------------------------------
+  netcdf_climbra: "{data_root}/HAZBRA/netcdf/CLIMBRA"          # <Hazard>/<Indicator>/{individual_models,ensemble}/
+  netcdf_obs:     "{data_root}/HAZBRA/netcdf/Observational"    # <Hazard>/<Indicator>/<DATASET>_<kind>.nc
+  municipal:      "{data_root}/HAZBRA/municipalities"          # parquet tables + geometry/ + weights/
+  outliers:       "{data_root}/HAZBRA/netcdf/outliers"         # flagged return-level pixels + outliers_log.csv
+
+  # ---- outputs: paper figures / tables -------------------------------------
+  figures: "{code_root}/outputs/figures"      # {code_root} = the folder that contains this config/ directory
+  tables:  "{code_root}/outputs/tables"
+
+# ---- calculation options (used by 01_calculation/) ---------------------------
+calc:
+  overwrite: false                    # skip per-model / per-dataset files that already exist
+  obs_tile_rows: 130                  # observations are computed in latitude bands of this many rows (memory)
+  return_periods: [5, 10, 25, 50, 100]
+  ensemble_quantiles: [0.10, 0.90]    # ensemble = mean, median, p10, p90
+  present_period: [1981, 2010]        # "present" window for CLIMBRA and observational climatologies
+  gwl_pad_years: 5                    # GWL window = table (start_year - 5, end_year + 5)
+
+test:
+  enabled: false
