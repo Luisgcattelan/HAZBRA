@@ -5,6 +5,7 @@ type: software
 version: 0.1.0
 license: MIT
 repository-code: "https://github.com/Luisgcattelan/HAZBRA"
+doi: 10.5281/zenodo.24319623
 abstract: >-
   Code that computes the HAZBRA climate-hazard indicators for Brazil (16 rainfall, drought, heat and
   compound indicators) from CHIRPS, MERGE and BR-DWGD observations and the 19-model CLIMBRA CMIP6

@@ -1,5 +1,7 @@
 # HAZBRA – processing code (organised for review)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24319623.svg)](https://doi.org/10.5281/zenodo.24319623)
+
 Code that produces the **HAZBRA** climate-hazard dataset for Brazil (16 annual indicators from CHIRPS, MERGE,
 BR-DWGD/XAVIER observations and the 19-model CLIMBRA CMIP6 ensemble at +1.5/+2/+3 °C, grid and municipal scale)
 and the figures/numbers of the accompanying data paper.
@@ -107,5 +109,5 @@ bounded memory) and dask uses the CPUs SLURM allocated to the job (`--workers` o
 
 ## Licence and citation
 
-Code: MIT licence (`LICENSE`). How to cite: `CITATION.cff`; every GitHub release is archived on Zenodo with a DOI.
+Code: MIT licence (`LICENSE`). How to cite: `CITATION.cff`; every GitHub release is archived on Zenodo; cite all versions with doi:10.5281/zenodo.24319623.
 Changes between versions: `CHANGELOG.md`. The HAZBRA dataset itself is distributed separately under CC BY 4.0.
