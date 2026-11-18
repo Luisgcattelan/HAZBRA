@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this code, please cite it as below (and the HAZBRA data paper once published)."
 title: "HAZBRA: processing code of a climate hazard dataset for Brazil"
 type: software
-version: 0.1.0
+version: 0.1.1
 license: MIT
 repository-code: "https://github.com/Luisgcattelan/HAZBRA"
 doi: 10.5281/zenodo.24319623

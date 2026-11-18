@@ -18,6 +18,7 @@ hazbra/            python package: indicator registry, pipelines, statistics, mu
 03_paper_analysis/ figures and numbers of the paper (only those that appear in the paper)
 tests/             end-to-end test run on a small box + regression check against the existing product
 outputs/figures/   figures of the paper (PNG)
+tools/             zenodo_dataset/: packing + upload of the dataset to Zenodo, dataset user guide
 environment.yml    software environment
 ```
 

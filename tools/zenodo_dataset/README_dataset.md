@@ -88,7 +88,7 @@ Return-period shifts (§5) are provided for every GEV indicator except the seaso
 HI and FWI use the 10 CLIMBRA models that provide relative humidity and wind (ACCESS-ESM1-5, CMCC-ESM2, EC-EARTH3,
 INM-CM4_8, INM-CM5, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2, MRI-ESM2, NorESM2-MM); all other indicators use the 19 models.
 
-## 4. Periods, grids and conventions
+## 4. Periods and grids
 
 | | Grid | Series | Reference (climatology, GEV) | Trend |
 |---|---|---|---|---|
@@ -120,7 +120,7 @@ INM-CM4_8, INM-CM5, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2, MRI-ESM2, NorESM2-MM); all
 | `timeseries` | annual (or seasonal) series | time, lat, lon [, season] |
 | `timeseries_monthly` | monthly SPI-3 series (SPI3 only) | time, lat, lon |
 | `return_period` | GEV return levels | return_period (5…100), lat, lon [, season] |
-| `params` | GEV parameters, **scipy convention**: `c`, `loc`, `scale` with shape ξ = −c | dparams, lat, lon [, season] |
+| `params` | GEV parameters `c`, `loc`, `scale` | dparams, lat, lon [, season] |
 | `trend` | `p_values`, `slopes` (Sen, units per year), `intercepts` – Hamed & Rao (1998) modified Mann–Kendall test; significant if p < 0.05 | lat, lon |
 
 Multi-variable indicators (HI, FWI) hold one variable per statistic (`HI_mean`, `HI_max`, `days_*`); their trend files
@@ -132,7 +132,7 @@ use `<var>_p_values`, `<var>_slopes`, `<var>_intercepts`.
 |---|---|---|
 | `climatology` | mean over each window | GWL (present, 1.5, 2, 3), lat, lon |
 | `return_period` | GEV return levels per window | GWL, return_period, lat, lon |
-| `params` | GEV parameters per window (scipy convention, ξ = −c) | GWL, dparams, lat, lon |
+| `params` | GEV parameters per window (`c`, `loc`, `scale`) | GWL, dparams, lat, lon |
 | `timeseries` | annual series 1980–2100 (not for SPI3/SPI6) | scenario (ssp245, ssp585), time, lat, lon |
 | `rp_shift` | `<var>_hist_return_level` (present-day level of the T-year event), `<var>_new_return_period` (years, 1–1000), `<var>_probability_ratio` (= T / new return period; > 1 more frequent) | GWL (1.5, 2, 3), event_rp, lat, lon |
 
@@ -178,21 +178,7 @@ day counts above 365 (92 for CDD_season) were capped instead. For each source:
 * `outliers_by_indicator.csv`, `outliers_summary.csv`, `outliers_detail.csv`, `outliers_summary.md`: shares of
   modified cells; `outliers_log.csv`: full log of the filter runs.
 
-## 8. Good practice and limitations
-
-* Compare the three observational baselines: they differ, especially for dry-spell length and extremes.
-* Use the P10–P90 range and the model agreement, not only the median; the ensemble spread does not include
-  observational or GEV sampling uncertainty.
-* Return levels come from 30 annual values (20 for MERGE); 50- and 100-year levels are extrapolations, particularly for
-  `TNN` and SPI (fitted to minima). Treat them as orders of magnitude.
-* GWL products come from SSP5-8.5 windows; SSP2-4.5 is available only through the annual time series.
-* Delta-change projections add model changes to a baseline: they keep its spatial detail but not changes in variability.
-  The MERGE delta-change files add the model change relative to 1981–2010 to the MERGE 2001–2020 baseline.
-* Municipal values are area means of the grids; values with `method` = `buffer25km` / `nearest` describe the surroundings.
-* The `units` attribute of some derived variables (trend p-values, agreement counts, % anomalies, HI/FWI day counts)
-  is inherited from the parent variable; the units in this guide take precedence.
-
-## 9. Citation
+## 8. Citation
 
 Please cite the data paper (in preparation) and this record:
 Cattelan, L. G., Amorim, P. B. de, Rodrigues, D. T., Buller, A., Vinagreiro, C. E., Moraes, R. J. N. P., Dalla Riva, E.,

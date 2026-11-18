@@ -1149,21 +1149,6 @@ consistency check; small differences come from buffers and missing municipalitie
 Output files ({len(inv)}):
 
 {_md_table(pd.DataFrame(inv)) if inv else '_none yet_'}
-## Caveats
-
-* Values for municipalities flagged `{B}` or `nearest` represent the surrounding area, not
-  the municipality alone. This mainly affects small municipalities on coarse grids (e.g.
-  CLIMBRA 0.25°) and coastal municipalities on land-only grids.
-* Statistics inherit the resolution of the source grid: municipal values for municipalities
-  much smaller than a grid cell are effectively the value of the enclosing cell(s).
-* Return-period shift (`file_kind = rp_shift`): municipal values are area-weighted arithmetic
-  means of the per-cell return periods and probability ratios. New return periods are capped
-  at 1000 years in the source files, so a few capped cells can raise the municipal mean; `max`
-  and `min` show the range within the municipality. In the ensemble file the p10 of the return
-  period corresponds to the most-frequent end of the model range.
-* Ensemble percentiles (`p10`, `median`, `p90`) are computed per grid cell before aggregation;
-  the municipal mean of a percentile map is not the percentile of municipal means across models.
-
 ## Reading the data
 
 ```python

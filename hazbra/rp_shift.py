@@ -265,7 +265,14 @@ def detect_convention(indicator, var, models, T=CHECK_T):
                     n=int(ok.sum()))
         if not cand:
             continue
-        best = min(cand, key=lambda k: cand[k]['mae'])
+        # Median relative error (not the mean): the stored return levels were outlier-filtered (interpolated or
+        # capped at 365 days), and those few cells dominate a mean error and can select the wrong sign.
+        # Ties are resolved in favour of the xclim convention.
+        def _rank(k):
+            sgn, md = k.split('|')
+            exp = int(sgn) == EXPECTED_C_SIGN and md == EXPECTED_MODE[tail]
+            return (round(cand[k]['rel_err_pct'], 6), 0 if exp else 1, cand[k]['mae'])
+        best = min(cand, key=_rank)
         sign, mode = best.split('|')
         conv = dict(c_sign=int(sign), mode=mode, tail=tail, checked=True, ref_model=m,
                     T_check=t_used, **cand[best], candidates=cand)
@@ -490,9 +497,8 @@ Everything is computed per model; ensemble statistics are computed afterwards, p
 <Category>/<Indicator>/
 ├── individual_models/
 │   ├── <MODEL>_params.nc              input: GEV parameters (c, loc, scale) per GWL
-│   ├── <MODEL>_return_period.nc       input: fixed return levels (used for the convention check)
 │   ├── <MODEL>_rp_shift.nc            output: per-model return-period shift
-│   └── rp_shift_conventions.json      output: detected GEV convention per variable
+│   └── rp_shift_conventions.json      output: GEV parameter convention check per variable (internal)
 └── ensemble/
     └── ensemble_rp_shift.nc           output: ensemble statistics and model agreement
 ```
@@ -524,47 +530,6 @@ ensemble files).
 
 Note: percentiles of the return period and of PR are computed independently; the p10 of the
 return period corresponds to the p90 of PR (most frequent end).
-
-## GEV convention
-
-The parameter files store (c, loc, scale). The sign convention of c and the tail used for
-indicators fitted on minima are detected automatically: every candidate combination is used
-to recompute the present-day {CHECK_T}-year level and compared with the model's own
-`<MODEL>_return_period.nc`; the combination with the smallest error is used.
-
-Tail modes:
-{chr(10).join(f'* `{k}`: {v}' for k, v in MODES.items())}
-
-Indicators treated as lower-tail (fitted on minima): {', '.join(sorted(LOWER_TAIL_INDICATORS))}.
-
-| Indicator | Variable | Tail | Mode | c sign | Checked | Median rel. error (%) | Models | Ensemble |
-|---|---|---|---|---|---|---|---|---|
-{table}
-
-`c sign = +1` means the stored c follows `scipy.stats.genextreme` (c = −ξ).
-
-The parameters were produced with `xclim.indices.stats.frequency_analysis` / `fit`
-(`dist="genextreme"`, `freq="YS"`), which stores (c, loc, scale) in the scipy convention. For
-maxima (`mode="max"`) the T-year level is the 1 − 1/T quantile; for minima (`mode="min"`, used
-for TNN and SPI) the GEV is fitted directly to the annual minima and the T-year level is the
-1/T quantile (tail mode `lower`). The automatic check above confirms this per variable.
-
-## Caveats
-
-* Each GWL is represented by a 30-year window: return periods beyond ~30 years (50, 100) are
-  extrapolations of the fitted GEV and carry large sampling uncertainty, which is not included
-  in the model spread.
-* Under bounded tails (ξ < 0) small changes in the parameters can make the historical level
-  unreachable (capped at {MAX_RP:g} years); check `<var>_frac_capped`.
-* For TNN and SPI the GEV is fitted directly to the annual minima (xclim `mode="min"`). Extreme
-  value theory motivates fitting a GEV to −x (minima of x are maxima of −x); fitting
-  `genextreme` to the minima themselves is a pragmatic choice whose lower tail is not
-  constrained by the theory, so return levels beyond the sample length should be interpreted
-  with care.
-* For lower-tail indicators (TNN, SPI) the event is "at or below z_T": PR > 1 means e.g. that
-  very cold nights (TNN) or severe droughts (SPI) become more frequent.
-* Spatial aggregation: arithmetic means of return periods or PR across grid cells are biased by
-  large values; use medians or the geometric mean of PR.
 """
     with open(_readme_path(), 'w', encoding='utf-8') as fh:
         fh.write(txt)
