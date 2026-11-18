@@ -183,7 +183,7 @@ day counts above 365 (92 for CDD_season) were capped instead. For each source:
 Please cite the data paper (in preparation) and this record:
 Cattelan, L. G., Amorim, P. B. de, Rodrigues, D. T., Buller, A., Vinagreiro, C. E., Moraes, R. J. N. P., Dalla Riva, E.,
 & Mattos, C. HAZBRA: a climate hazard dataset for Brazil with observed and projected indicators at grid and municipal
-scale (Version 1.0). Zenodo. https://doi.org/10.5281/zenodo.24320753
+scale. Zenodo. https://doi.org/10.5281/zenodo.24320752 (all versions; version 1.0: https://doi.org/10.5281/zenodo.24320753)
 
 and the source datasets: CHIRPS (Funk et al. 2015), MERGE (Rozante et al. 2010, 2020), BR-DWGD (Xavier et al. 2022),
 CLIMBRA (Ballarin et al. 2023).

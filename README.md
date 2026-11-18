@@ -111,4 +111,4 @@ bounded memory) and dask uses the CPUs SLURM allocated to the job (`--workers` o
 ## Licence and citation
 
 Code: MIT licence (`LICENSE`). How to cite: `CITATION.cff`; every GitHub release is archived on Zenodo; cite all versions with doi:10.5281/zenodo.24319623.
-Changes between versions: `CHANGELOG.md`. The HAZBRA dataset itself is distributed separately under CC BY 4.0.
+Changes between versions: `CHANGELOG.md`. The HAZBRA dataset itself is published on Zenodo under CC BY 4.0: https://doi.org/10.5281/zenodo.24320752.

@@ -3,15 +3,55 @@
   "upload_type": "software",
   "license": "MIT",
   "description": "Code that computes the HAZBRA climate-hazard indicators for Brazil (rainfall, drought, heat and compound hazards) from CHIRPS, MERGE and BR-DWGD observations and the 19-model CLIMBRA CMIP6 ensemble at global warming levels of 1.5, 2 and 3 °C: GEV return levels, return-period shifts, ensemble statistics and model agreement, delta-change projections and municipal aggregation. The dataset itself is published separately (CC BY 4.0).",
-  "keywords": ["climate hazards", "extremes", "Brazil", "CMIP6", "CLIMBRA", "global warming levels", "return periods", "GEV"],
+  "keywords": [
+    "climate hazards",
+    "extremes",
+    "Brazil",
+    "CMIP6",
+    "CLIMBRA",
+    "global warming levels",
+    "return periods",
+    "GEV"
+  ],
   "creators": [
-    {"name": "Cattelan, Luís Gustavo", "affiliation": "University of Leeds; Instituto Relva"},
-    {"name": "Amorim, Pablo Borges de", "affiliation": "Federal University of Rio Grande do Norte (UFRN)"},
-    {"name": "Rodrigues, Daniele T.", "affiliation": "Federal University of Rio Grande do Norte (UFRN)"},
-    {"name": "Buller, Antonio", "affiliation": "Theia Finance Labs"},
-    {"name": "Vinagreiro, Carlos Eduardo", "affiliation": "Central Bank of Brazil"},
-    {"name": "Moraes, Ricardo José Nunes Pereira", "affiliation": "Central Bank of Brazil"},
-    {"name": "Dalla Riva, Enrico", "affiliation": "Central Bank of Brazil; Mackenzie Presbyterian University"},
-    {"name": "Mattos, Caio", "affiliation": "Instituto Relva"}
+    {
+      "name": "Cattelan, Luís Gustavo",
+      "affiliation": "University of Leeds; Instituto Relva"
+    },
+    {
+      "name": "Amorim, Pablo Borges de",
+      "affiliation": "Federal University of Rio Grande do Norte (UFRN)"
+    },
+    {
+      "name": "Rodrigues, Daniele T.",
+      "affiliation": "Federal University of Rio Grande do Norte (UFRN)"
+    },
+    {
+      "name": "Buller, Antonio",
+      "affiliation": "Theia Finance Labs"
+    },
+    {
+      "name": "Vinagreiro, Carlos Eduardo",
+      "affiliation": "Central Bank of Brazil"
+    },
+    {
+      "name": "Moraes, Ricardo José Nunes Pereira",
+      "affiliation": "Central Bank of Brazil"
+    },
+    {
+      "name": "Dalla Riva, Enrico",
+      "affiliation": "Central Bank of Brazil; Mackenzie Presbyterian University"
+    },
+    {
+      "name": "Mattos, Caio",
+      "affiliation": "Instituto Relva"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.24320752",
+      "relation": "compiles",
+      "resource_type": "dataset"
+    }
   ]
 }
